@@ -18,22 +18,22 @@ const { user: UserMiddleware, houseMiddleware} = require('./middleware');
 
 app.get('/', (req,res) => { res.render('register') });
 app.get('/join', (req,res) => { res.render('login') });
-app.get('/sign_in_house', (req,res)=>{ res.render('loginHouse') });
-app.get('/join_house',(req,res)=>{ res.render('createHouse') });
-app.get('/edit_user', (req,res)=>{ res.render('editUser') });
-app.get('/edit_house', (req,res)=>{ res.render('editHouse') });
+app.get('/sign_in_houses', (req,res)=>{ res.render('loginHouse') });
+app.get('/join_houses',(req,res)=>{ res.render('createHouse') });
+app.get('/edit_users', (req,res)=>{ res.render('editUser') });
+app.get('/edit_houses', (req,res)=>{ res.render('editHouse') });
 
 
 app.get('/house/:house_id',houseMiddleware.checkHouseIdMiddleware, user.getById);
-app.post('/join_house',houseMiddleware.CheckHouseValidityMiddleware, house.createHouse);
-app.post('/sign_in_house',houseMiddleware.checkHouseLoginMiddleware,house.loginHouse);
-app.post('/edit_house',houseMiddleware.checkEditHouseMiddleware,house.editHouse );
+app.post('/join_houses',houseMiddleware.CheckHouseValidityMiddleware, house.createHouse);
+app.post('/sign_in_houses',houseMiddleware.checkHouseLoginMiddleware,house.loginHouse);
+app.post('/edit_houses',houseMiddleware.checkEditHouseMiddleware,house.editHouse );
 
 
 app.post('/',UserMiddleware.checkUserValidity, user.createUser);
 app.post('/join',UserMiddleware.checkUserMiddleware, user.login);
 app.get('/users/:user_id',UserMiddleware.isUserPresendMiddleware, user.getById);
-app.post('/edit_user',UserMiddleware.checkUserEditMiddleware,user.editUser);
+app.post('/edit_users',UserMiddleware.checkUserEditMiddleware,user.editUser);
 
 app.all('*',async (req,res)=>{
         res.json('error')
