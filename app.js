@@ -24,7 +24,7 @@ app.get('/edit_users', (req,res)=>{ res.render('editUser') });
 app.get('/edit_houses', (req,res)=>{ res.render('editHouse') });
 
 
-app.get('/house/:house_id',houseMiddleware.checkHouseIdMiddleware, house.getById);
+app.get('/house/:house_id',houseMiddleware.checkHouseIdMiddleware, house.gettByIdHouse);
 app.post('/join_houses',houseMiddleware.CheckHouseValidityMiddleware, house.createHouse);
 app.post('/sign_in_houses',houseMiddleware.checkHouseLoginMiddleware,house.loginHouse);
 app.post('/edit_houses',houseMiddleware.checkEditHouseMiddleware,house.editHouse );
